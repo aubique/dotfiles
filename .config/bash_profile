@@ -1,3 +1,4 @@
-echo '===.BASH_PROFILE==='
-#. ~/.profile
-#case $- in *i*) . ~/.bashrc;; esac
+# ~/.bash_profile
+
+show_sourced_file '~/.bash_profile'
+[[ -f ~/.bashrc ]] && . ~/.bashrc

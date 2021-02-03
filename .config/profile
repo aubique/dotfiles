@@ -3,12 +3,7 @@
 # exists.
 # see /usr/share/doc/bash/examples/startup-files for examples.
 # the files are located in the bash-doc package.
-
 show_sourced_file '~/.profile'
-
-# the default umask is set in /etc/profile; for setting the umask
-# for ssh logins, install and configure the libpam-umask package.
-#umask 022
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
@@ -19,26 +14,27 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+#if [ -d "$HOME/bin" ] ; then
+#	    PATH="$HOME/bin:$PATH"
+#fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+#if [ -d "$HOME/.local/bin" ] ; then
+#	    PATH="$HOME/.local/bin:$PATH"
+#fi
 
 # Password-store extensions
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
-# Tmux
-#if [[ -z "$TMUX" ]]; then
-#    if tmux has-session 2>/dev/null; then
-#        exec tmux attach
-#    else
-#        exec tmux
-#    fi
-#fi
-
-# verify if WSL whether initialized correctly or not
-bash -c "powershell.exe -Command Write-Host 'WSL2 initialized correctly'"
+# ENV variables
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export EDITOR=/usr/bin/vim
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+# XDG login
+#[[ -f $XDG_CONFIG_HOME/bash_env ]] && source $XDG_CONFIG_HOME/bash_env
+# fix "xdg-open fork-bomb" export your preferred browser from here
+export BROWSER=/usr/bin/chromium
+export WAKATIME_HOME=/home/ubique/.waka/
+# XDG interactive
+export BASH_COMPLETION_USER_FILE=$XDG_CONFIG_HOME/bash_completion
+export VIMINIT='let $MYVIMRC="$VIMDOTDIR/vimrc" | source $MYVIMRC'
